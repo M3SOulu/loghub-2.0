@@ -55,22 +55,18 @@ class LogParser:
             df_event_id_template["EventTemplate"].append(" _/|\\_ ".join(tmps))
 
         df_event_id_template = pd.DataFrame(df_event_id_template)
-        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 1")
         self.df_log["EventId"] = series_event_id
         self.df_log["EventTemplate"] = series_event_template
         if self.keep_para:
             self.df_log["ParameterList"] = self.df_log.apply(
                 self.get_parameter_list, axis=1
             )
-        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 2")
         self.df_log.to_csv(
             os.path.join(self.savePath, self.logname + "_structured.csv"), index=False
         )
-        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 3")
         df_event_id_template.to_csv(
             os.path.join(self.savePath, self.logname + "_templates.csv"), index=False
         )
-        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 4")
 
     def parse(self, logname):
         starttime = datetime.now()
