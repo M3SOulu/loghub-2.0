@@ -83,5 +83,5 @@ def tokenMatch(allTokensList, doubleDictionaryList, triDictionaryList, doubleThr
 
     template_df = pd.DataFrame(template_lines, columns=['EventId', 'EventTemplate'])
     template_df.to_csv(template_file, index=False)
-    structured_log_df = pd.DataFrame(structured_log_lines, columns=['LineId', 'Content', 'EventId', 'EventTemplate'])
-    structured_log_df.to_csv(structured_log_file, index=False)
+    structured_log_df = pd.DataFrame(structured_log_lines, columns=['LineId', 'Content', 'EventId', 'EventTemplate'], escapechar='\\')
+    structured_log_df.to_csv(structured_log_file, index=False, escapechar='\\')

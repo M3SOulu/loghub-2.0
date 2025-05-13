@@ -86,8 +86,8 @@ class LogParser():
         df_event['EventId'] = self.df_log['EventTemplate'].map(lambda x: hashlib.md5(x.encode('utf-8')).hexdigest()[0:8])
 
         self.df_log.drop("Content_", inplace=True, axis=1)
-        self.df_log.to_csv(os.path.join(self.savePath, self.logname + '_structured.csv'), index=False)
-        df_event.to_csv(os.path.join(self.savePath, self.logname + '_templates.csv'), index=False, columns=["EventId","EventTemplate","Occurrences"])
+        self.df_log.to_csv(os.path.join(self.savePath, self.logname + '_structured.csv'), index=False, escapechar='\\')
+        df_event.to_csv(os.path.join(self.savePath, self.logname + '_templates.csv'), index=False, columns=["EventId","EventTemplate","Occurrences"], escapechar='\\')
 
     def get_clusters(self, logs, lev, old_clusters=None):
         clusters = []

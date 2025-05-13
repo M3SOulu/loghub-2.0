@@ -114,10 +114,10 @@ class PatternMatch(object):
         return log_dataframe
 
     def _dump_match_result(self, log_filename, log_dataframe):
-        log_dataframe.to_csv(os.path.join(self.outdir, log_filename + '_structured.csv'), index=False)
+        log_dataframe.to_csv(os.path.join(self.outdir, log_filename + '_structured.csv'), index=False, escapechar='\\')
         template_freq_list = [[eventId, template, freq] for (eventId, template), freq in self.template_freq_dict.items()]
         template_freq_df = pd.DataFrame(template_freq_list, columns=['EventId', 'EventTemplate', 'Occurrences'])
-        template_freq_df.to_csv(os.path.join(self.outdir, log_filename + '_templates.csv'), index=False)
+        template_freq_df.to_csv(os.path.join(self.outdir, log_filename + '_templates.csv'), index=False, escapechar='\\')
 
     def _generate_hash_eventId(self, template_str):
         return hashlib.md5(template_str.encode('utf-8')).hexdigest()[0:8]

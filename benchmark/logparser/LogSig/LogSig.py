@@ -216,7 +216,7 @@ class LogParser:
 
         self.df_log['EventId'] = EventId
         self.df_log['EventTemplate'] = EventTemplate
-        self.df_log.to_csv(os.path.join(self.para.savePath, self.logname + '_structured.csv'), index=False)
+        self.df_log.to_csv(os.path.join(self.para.savePath, self.logname + '_structured.csv'), index=False, escapechar='\\')
 
 
         occ_dict = dict(self.df_log['EventTemplate'].value_counts())
@@ -225,7 +225,7 @@ class LogParser:
         df_event['EventId'] = df_event['EventTemplate'].map(lambda x: hashlib.md5(x.encode('utf-8')).hexdigest()[0:8])
         df_event['Occurrences'] = df_event['EventTemplate'].map(occ_dict)
 
-        df_event.to_csv(os.path.join(self.para.savePath, self.logname + '_templates.csv'), index=False, columns=["EventId", "EventTemplate","Occurrences"])
+        df_event.to_csv(os.path.join(self.para.savePath, self.logname + '_templates.csv'), index=False, columns=["EventId", "EventTemplate","Occurrences"], escapechar='\\')
 
     def log_to_dataframe(self, log_file, regex, headers, logformat):
         """ Function to transform log file to dataframe """

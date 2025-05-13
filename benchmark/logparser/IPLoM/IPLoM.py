@@ -412,14 +412,14 @@ class LogParser:
         eventID_template = {event.eventId : ' '.join(event.eventStr) for event in self.eventsL}
         eventList = [[event.eventId, ' '.join(event.eventStr), event.eventCount] for event in self.eventsL]
         eventDf = pd.DataFrame(eventList, columns=['EventId', 'EventTemplate', 'Occurrences'])
-        eventDf.to_csv(os.path.join(self.para.savePath, self.logname + '_templates.csv'), index=False)
+        eventDf.to_csv(os.path.join(self.para.savePath, self.logname + '_templates.csv'), index=False, escapechar='\\')
 
         self.output.sort(key=lambda x: int(x[0]))
         self.df_log['EventId'] = [str(logL[1]) for logL in self.output]
         self.df_log['EventTemplate'] = [eventID_template[logL[1]] for logL in self.output]
         # if self.keep_para:
         #     self.df_log["ParameterList"] = self.df_log.apply(self.get_parameter_list, axis=1) 
-        self.df_log.to_csv(os.path.join(self.para.savePath, self.logname + '_structured.csv'), index=False)
+        self.df_log.to_csv(os.path.join(self.para.savePath, self.logname + '_structured.csv'), index=False, escapechar='\\')
 
     """
     For 1-M and M-1 mappings, you need to decide whether M side are constants or variables. This method is to decide which side to split

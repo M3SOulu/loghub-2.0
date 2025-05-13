@@ -59,8 +59,8 @@ class LogParser(object):
         self.df_log['EventId'] = template_ids
         self.df_log['EventTemplate'] = templates
 
-        pd.DataFrame(df_event, columns=['EventId', 'EventTemplate', 'Occurrences']).to_csv(os.path.join(self.savePath, self.logname + '_templates.csv'), index=False)
-        self.df_log.to_csv(os.path.join(self.savePath, self.logname + '_structured.csv'), index=False)
+        pd.DataFrame(df_event, columns=['EventId', 'EventTemplate', 'Occurrences']).to_csv(os.path.join(self.savePath, self.logname + '_templates.csv'), index=False, escapechar='\\')
+        self.df_log.to_csv(os.path.join(self.savePath, self.logname + '_structured.csv'), index=False, escapechar='\\')
 
 
     def log_to_dataframe(self, log_file, regex, headers, logformat):

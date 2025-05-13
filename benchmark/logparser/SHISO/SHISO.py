@@ -321,8 +321,8 @@ class LogParser:
 
         self.df_log['EventId'] = ids
         self.df_log['EventTemplate'] = templates
-        self.df_log.to_csv(os.path.join(self.savePath, self.logname + '_structured.csv'), index=False)
-        df_event.to_csv(os.path.join(self.savePath, self.logname + '_templates.csv'), index=False)
+        self.df_log.to_csv(os.path.join(self.savePath, self.logname + '_structured.csv'), index=False, escapechar='\\')
+        df_event.to_csv(os.path.join(self.savePath, self.logname + '_templates.csv'), index=False, escapechar='\\')
 
 
     def printTree(self, node, dep):

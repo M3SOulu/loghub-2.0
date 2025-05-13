@@ -54,8 +54,8 @@ class LogParser():
         df_event['EventTemplate'] = log_dataframe['EventTemplate'].unique()
         df_event['Occurrences'] = df_event['EventTemplate'].map(occ_dict)
         df_event['EventId'] = df_event['EventTemplate'].map(lambda x: hashlib.md5(x.encode('utf-8')).hexdigest()[0:8])
-        df_event.to_csv(os.path.join(self.output_dir, log_file + '_templates.csv'), index=False, columns=["EventId", "EventTemplate", "Occurrences"])
-        log_dataframe.to_csv(os.path.join(self.output_dir, log_file + '_structured.csv'), index=False)
+        df_event.to_csv(os.path.join(self.output_dir, log_file + '_templates.csv'), index=False, columns=["EventId", "EventTemplate", "Occurrences"], escapechar='\\')
+        log_dataframe.to_csv(os.path.join(self.output_dir, log_file + '_structured.csv'), index=False, escapechar='\\')
         print('Parsing done. [Time taken: {!s}]'.format(datetime.now() - starttime))
         
 

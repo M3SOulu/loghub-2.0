@@ -94,8 +94,8 @@ def SLCT(para, log_format, rex):
     df_event['Occurrences'] = df_event['EventTemplate'].map(occ_dict)
 
     df_event.to_csv(os.path.join(para['savePath'], para['dataName'] + "_templates.csv"), index=False, columns=["EventId", "EventTemplate", "Occurrences"])
-    matched_df.to_csv(os.path.join(para['savePath'], para['dataName'] + "_structured.csv"), index=False)
-    print('Parsing done. [Time: {!s}]'.format(datetime.now() - startTime))
+    matched_df.to_csv(os.path.join(para['savePath'], para['dataName'] + "_structured.csv"), index=False, escapechar='\\')
+    print('Parsing done. [Time: {!s}]'.format(datetime.now() - startTime), escapechar='\\')
 
 def extract_command(para, logname):
     support = para['support']
